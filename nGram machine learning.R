@@ -38,20 +38,31 @@ d1 <- d1[r,]
 
 lWords <- lapply(d1$comments, getWords)
 
-
-
 lWords[[10]]
-
-numberCharacters <- 3
 
 charVals <- unlist(strsplit(lWords[[2]], split = ""))
 
-i <- 1
-nCharacters <- 3
-lsGram <- list()
-for(i in 1:(length(charVals) - nCharacters + 1)){
-     r <- i:(i + nCharacters - 1)
-     lsGram[[i]] <- paste(charVals[r], collapse = "")
+charVals <- unlist(strsplit("12345678901234567890", split = ""))
+
+# vectorLength TotalNumberOfCharacters - NumberOfCharacters + 1
+nCharacters <- 6
+endPoints <- nCharacters:(sum(nchar(charVals)))
+startPoints <- endPoints - nCharacters + 1
+data.frame(startPoints, endPoints)
+sum(nchar(charVals)) - nCharacters + 1
+
+
+getNGram <- function(txt, numberOfCharactersToGroup){
+     endPoints <- numberOfCharactersToGroup:(nchar(txt))
+     startPoints <- endPoints - numberOfCharactersToGroup + 1
+     
+     indexPositions <- mapply(seq, from = startPoints, to = endPoints)
+     m <- matrix(charVals[indexPositions], ncol=6, byrow = TRUE)
+     apply(m, 1, paste, collapse = "")
      
 }
+
+
+
+
 
