@@ -40,5 +40,18 @@ lWords <- lapply(d1$comments, getWords)
 
 
 
+lWords[[10]]
 
+numberCharacters <- 3
+
+charVals <- unlist(strsplit(lWords[[2]], split = ""))
+
+i <- 1
+nCharacters <- 3
+lsGram <- list()
+for(i in 1:(length(charVals) - nCharacters + 1)){
+     r <- i:(i + nCharacters - 1)
+     lsGram[[i]] <- paste(charVals[r], collapse = "")
+     
+}
 
