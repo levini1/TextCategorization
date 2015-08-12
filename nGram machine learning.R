@@ -42,6 +42,8 @@ lWords[[10]]
 
 charVals <- unlist(strsplit(lWords[[2]], split = ""))
 
+txt <- "12345678901234567890"
+
 charVals <- unlist(strsplit("12345678901234567890", split = ""))
 
 # vectorLength TotalNumberOfCharacters - NumberOfCharacters + 1
@@ -51,16 +53,20 @@ startPoints <- endPoints - nCharacters + 1
 data.frame(startPoints, endPoints)
 sum(nchar(charVals)) - nCharacters + 1
 
+numberOfCharactersToGroup <- nCharacters
 
 getNGram <- function(txt, numberOfCharactersToGroup){
      endPoints <- numberOfCharactersToGroup:(nchar(txt))
      startPoints <- endPoints - numberOfCharactersToGroup + 1
      
      indexPositions <- mapply(seq, from = startPoints, to = endPoints)
-     m <- matrix(charVals[indexPositions], ncol=6, byrow = TRUE)
-     apply(m, 1, paste, collapse = "")
+     m <- matrix(charVals[indexPositions], ncol=numberOfCharactersToGroup, byrow = TRUE)
+     return(apply(m, 1, paste, collapse = ""))
      
 }
+
+
+
 
 
 
